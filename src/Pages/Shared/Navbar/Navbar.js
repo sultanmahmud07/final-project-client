@@ -10,7 +10,7 @@ const Navbar = () => {
   const manuItems = <React.Fragment>
   <li><Link to="/home">Home</Link></li>
   <li><Link to="/about">About</Link></li>
-  <li><Link to="/appointment">Products</Link></li>
+  <li><Link to="/products">Products</Link></li>
   <li><Link to="/reviews">Advertise</Link></li>
   <li><Link to="/contact">Contact Us</Link></li>
   {/* {
