@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookingModal = ({ modalData }) => {
+const BookingModal = ({ modalData, setModalData }) => {
   const { phone_model } = modalData
   console.log(modalData);
 
@@ -24,6 +24,7 @@ const handleBooking = event => {
 
   }
   console.log(booking);
+  setModalData(null)
 }
 
 

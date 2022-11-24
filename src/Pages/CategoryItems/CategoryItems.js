@@ -5,8 +5,8 @@ import '../../commonStyles/style.css';
 import BookingModal from './BookingModal/BookingModal';
 
 const CategoryItems = () => {
-  const [modalData, setModalData] =useState(null);
-  const items =useLoaderData()
+  const [modalData, setModalData] = useState(null);
+  const items = useLoaderData()
   // console.log(items);
   // const [categoryItems, setCategoryItems] =useState(null);
 
@@ -17,16 +17,17 @@ const CategoryItems = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
         {
           items.map(item => <ItemCard
-          key={item._id}
-          item={item}
-          setModalData={setModalData}
+            key={item._id}
+            item={item}
+            setModalData={setModalData}
           ></ItemCard>)
         }
       </div>
-      
+
       {
         modalData && <BookingModal
-        modalData={modalData}
+          modalData={modalData}
+          setModalData={setModalData}
         ></BookingModal>
       }
     </div>
