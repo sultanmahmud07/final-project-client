@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import ItemCard from './ItemCard/ItemCard';
 import '../../commonStyles/style.css';
+import BookingModal from './BookingModal/BookingModal';
 
 const CategoryItems = () => {
+  const [modalData, setModalData] =useState(null);
   const items =useLoaderData()
   // console.log(items);
-  // const [categoryItems, setCategoryItems] =useState([]);
+  // const [categoryItems, setCategoryItems] =useState(null);
 
 
   return (
@@ -17,9 +19,16 @@ const CategoryItems = () => {
           items.map(item => <ItemCard
           key={item._id}
           item={item}
+          setModalData={setModalData}
           ></ItemCard>)
         }
       </div>
+      
+      {
+        modalData && <BookingModal
+        modalData={modalData}
+        ></BookingModal>
+      }
     </div>
   );
 };

@@ -7,7 +7,7 @@ import SliderFour from '../../../../Assat/slider-img/slaider-5.jpg';
 
 const Banner = () => {
   return (
-    <div className='common-w'>
+    <div className=''>
       <div className="carousel w-full">
   <div id="slide1" className="carousel-item relative w-full">
     <img src={SliderOne} className="w-full rounded-3xl my-3" />

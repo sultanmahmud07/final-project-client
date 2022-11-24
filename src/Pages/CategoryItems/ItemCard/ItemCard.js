@@ -1,8 +1,12 @@
 import React from 'react';
 
-const ItemCard = ({item}) => {
+const ItemCard = ({item, setModalData}) => {
   const {_id, Brand, Img, address, buy, condition, new_price, resell_price, post_time, use_time, phone_model, selling_address  } =item
-  console.log(item);
+  
+  
+  // console.log(item);
+
+
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl">
@@ -10,7 +14,7 @@ const ItemCard = ({item}) => {
         <div className="card-body">
           <h2 className="card-title">
             {phone_model}
-            <div className="badge badge-secondary">{condition}</div>
+            <div className="badge badge-secondary">{post_time}</div>
           </h2>
           <div className='flex justify-between'>
             <span> <span className='text-warning font-bold '> Brand:</span> {Brand}</span>
@@ -24,7 +28,12 @@ const ItemCard = ({item}) => {
           </div>
         </div>
         <div>
-          <button className='btn btn-primary w-full'>Add Booking</button>
+          <label 
+          htmlFor="my-modal-3"
+          className='btn btn-primary w-full'
+          onClick={() => setModalData(item)}
+          >Booking Now</label>
+         
         </div>
       </div>
     </div>
