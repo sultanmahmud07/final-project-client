@@ -4,6 +4,11 @@ import CategoryCard from './CategoryCard/CategoryCard';
 
 const Products = () => {
   const [categoryOption, setCategoryOption] = useState([]);
+  const [loader, setLoader] =useState(true);
+
+  // if(loader){
+  //   return <p>Loading....</p>
+  // }
 
   useEffect(() => {
     fetch('http://localhost:5000/category')
