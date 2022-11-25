@@ -22,7 +22,7 @@ const handleBooking = event => {
     img: imgUrl,
     price: price,
     userName: name,
-    userEmail: email,
+    email: email,
     userPhone: phone,
     meetLocation: location
 

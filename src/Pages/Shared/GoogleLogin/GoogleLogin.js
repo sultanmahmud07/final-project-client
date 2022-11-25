@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import useToken from '../../../hooks/UseToken';
 
 const GoogleLogin = () => {
   const {googleSignIn} =useContext(AuthContext);
+  // const [googlUserEmail, setGoogleUserEmail] = useState('');
+  // const [token] =useToken(googlUserEmail);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -14,6 +17,7 @@ const GoogleLogin = () => {
     .then(result => {
       const user = result.user;
       console.log(user);
+      // setGoogleUserEmail()
       navigate(from, {replace: true});
       toast('Google Login Successfully')
     })

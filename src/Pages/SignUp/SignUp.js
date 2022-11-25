@@ -6,15 +6,20 @@ import Swal from 'sweetalert2'
 import toast from 'react-hot-toast';
 import GoogleLogin from '../Shared/GoogleLogin/GoogleLogin';
 import { data } from 'autoprefixer';
+import useToken from '../../hooks/UseToken';
 
 const SignUp = () => {
   // const [seller, setSeller] = useState('')
   const [error, setError] = useState('')
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext)
+  const { createUser, updateUser } = useContext(AuthContext);
+  const [createUserEmail, setCreateUserEmail] =useState('');
+  const [token] =useToken(createUserEmail);
   const navigate =useNavigate();
 
-
+  if(token){
+    navigate('/')
+  }
 
   const handleSigiUp = (data) => {
     createUser(data.email, data.password)
@@ -28,13 +33,13 @@ const SignUp = () => {
           'success'
         )
 
-       const fromInfo = {
-            userName: data.name,
-            userEmail: data.email,
-            userPass: data.password,
-            role: data.role
-        }
-        console.log(fromInfo);
+      //  const fromInfo = {
+      //       userName: data.name,
+      //       userEmail: data.email,
+      //       userPass: data.password,
+      //       role: data.role
+      //   }
+      //   console.log(fromInfo);
 
         //user profile update
         const userInfo = {
@@ -43,8 +48,8 @@ const SignUp = () => {
         updateUser(userInfo)
           .then(() => {
             toast("user name updated success")
-            navigate('/')
-            // saveUser(data.name, data.email)
+           
+            saveUser(data.name, data.email, data.role)
 
           })
           .catch(err => console.log(err))
@@ -55,9 +60,39 @@ const SignUp = () => {
       })
   }
 
-  // const handleSeller = (data) => {
-  //   setSeller('')
-  //   console.log(seller);
+
+
+// Post user information in database >>>>>>>
+  const  saveUser = (name, email, role) => {
+    const  user = {name, email, role};
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('save user', data);
+      setCreateUserEmail(email)
+      // getUserToken(email)
+      
+  
+    })
+  }
+
+
+  // const getUserToken = email => {
+  //   fetch(`http://localhost:5000/jwt?email=${email}`)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if (data.accessToken) {
+  //       localStorage.setItem('accessToken', data.accessToken)
+  //       // setToken(data.accessToken);
+  //       navigate('/')
+  //     }
+  //   })
   // }
 
 
