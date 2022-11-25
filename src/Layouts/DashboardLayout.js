@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../contexts/AuthProvider';
+import useAdmin from '../hooks/useAdmin';
+import useSeller from '../hooks/useSeller';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
+  const {user} = useContext(AuthContext);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] =useSeller(user?.email)
   return (
     <div>
       <Navbar></Navbar>
@@ -20,16 +26,20 @@ const DashboardLayout = () => {
             {/* <!-- Sidebar content here --> */}
 
             <li><Link to='/dashboard'>My Appointment</Link></li>
-            <li><Link to='/dashboard/alluser'>user account</Link></li>
 
-
-            {/* {
+            {
               isAdmin && <>
-                <li><Link to='/dashboard/allusers'>All Users</Link></li>
-                <li><Link to='/dashboard/adddoctor'>Add A Doctor</Link></li>
-                <li><Link to='/dashboard/manegedoctors'>Manage Doctors</Link></li>
+                <li><Link to='/dashboard/alluser'>All Seller and Buyer</Link></li>
+                {/* <li><Link to='/dashboard/adddoctor'>Add A Doctor</Link></li> */}
+                {/* <li><Link to='/dashboard/manegedoctors'>Manage Doctors</Link></li> */}
               </>
-            } */}
+            }
+            {
+              isSeller && <>
+                <li><Link to='/dashboard/addproduct'>Add A Product</Link></li>
+                <li><Link to='/dashboard/myproducts'>My Products</Link></li>
+              </>
+            }
           </ul>
 
         </div>

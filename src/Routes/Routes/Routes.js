@@ -15,7 +15,9 @@ import Login from "../../Pages/Login/Login";
 import Products from "../../Pages/Products/Products";
 import Error from "../../Pages/Shared/Error/Error";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -60,8 +62,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/alluser',
-        element: <AllUser></AllUser>
-      }
+        element: <AdminRoute><AllUser></AllUser></AdminRoute>
+      },
+      {
+        path: '/dashboard/addproduct',
+        element: <SellerRoute><p>lorem</p></SellerRoute>
+      },
+      {
+        path: '/dashboard/myproducts',
+        element: <SellerRoute><p>My product</p></SellerRoute>
+      },
     ]
   }
 ])
