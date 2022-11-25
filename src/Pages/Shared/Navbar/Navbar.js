@@ -18,9 +18,9 @@ const Navbar = () => {
 
   const manuItems = <React.Fragment>
   <li><Link to="/home">Home</Link></li>
-  <li><Link to="/about">About</Link></li>
   <li><Link to="/products">Products</Link></li>
   <li><Link to="/reviews">Advertise</Link></li>
+  <li><Link to="/blog">Blog</Link></li>
   {
     user?.uid &&  <li><Link to="/dashboard">Dashboard</Link></li>
   }

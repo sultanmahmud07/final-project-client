@@ -6,6 +6,7 @@ import {
 import DashboardLayout from "../../Layouts/DashboardLayout";
 
 import Main from "../../Layouts/Main";
+import Blog from "../../Pages/Blog/Blog";
 import CategoryItems from "../../Pages/CategoryItems/CategoryItems";
 import AllUser from "../../Pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <Products></Products>
+      },
+      {
+        path: '/blog',
+        element: <Blog></Blog>
       },
       {
         path: '/login',

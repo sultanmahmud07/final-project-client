@@ -1,0 +1,37 @@
+.single-question{
+  text-align: left;
+  margin-bottom: 100px;
+}
+.blog-title{
+  /* color: orangered; */
+  color: rgba(17, 61, 148, 0.907);
+  display: inline-block;
+  border-left: 3px solid rgb(24, 157, 210);
+  border-right:3px solid rgb(24, 157, 210);
+  border-radius: 20px;
+  padding: 7px;
+  margin-top: 10px;
+  padding: 6px 30px;
+}
+.q-title{
+  border-bottom: 3px solid rgba(17, 61, 148, 0.907);
+  display: inline-block;
+  border-bottom-left-radius: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  text-transform: capitalize;
+}
+.ans{
+  color: green;
+  font-size: 25px;
+  border-bottom: 2px solid black;
+}
+.q-p{
+  margin-left: 25px;
+  color: gray;
+  font-size: 18px;
+}
+.hstayle{
+  display: inline-block;
+}
