@@ -42,7 +42,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input type="submit" className="btn btn-neutral" value="Login" />
+                <input type="submit" className="btn btn-primary" value="Login" />
               </div>
             </form>
             <div>
