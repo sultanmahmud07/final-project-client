@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ modalData, setModalData }) => {
+  const {user} =useContext(AuthContext);
   const { phone_model } = modalData
   console.log(modalData);
 
 const handleBooking = event => {
   event.preventDefault();
   const form =event.target;
-  const itemName =form.itemName.value;
+  const imgUrl =form.imgUrl.value;
   const price =form.price.value;
   const name =form.name.value;
   const email =form.email.value;
@@ -16,6 +19,7 @@ const handleBooking = event => {
 
   const booking = {
     modelName: phone_model,
+    img: imgUrl,
     price: price,
     userName: name,
     userEmail: email,
@@ -24,7 +28,27 @@ const handleBooking = event => {
 
   }
   console.log(booking);
-  setModalData(null)
+
+  fetch('http://localhost:5000/bookings', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(booking)
+  })  
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+    setModalData(null)
+    if(data.acknowledged){
+      
+      toast.success('Booking confired')
+    }
+  })
+
+
+
+
 }
 
 
@@ -41,11 +65,11 @@ const handleBooking = event => {
           <h3 className="text-lg font-bold">{phone_model}</h3>
           <div>
             <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
-              <input name='itemName' type="text" placeholder="itemName" className="input w-full input-bordered " required />
+              <input name='imgUrl' readOnly defaultValue={modalData.Img} type="url" placeholder="itemName" className="input w-full input-bordered " required />
 
-              <input name="price"  type="text" placeholder="item price" className="input w-full input-bordered" required />
-              <input name="name"  type="text" placeholder="Your Name" className="input w-full input-bordered" required />
-              <input name="email"  type="email" placeholder="Email Address" className="input w-full input-bordered" required />
+              <input name="price" readOnly defaultValue={modalData.resell_price} type="text" placeholder="item price" className="input w-full input-bordered" required />
+              <input name="name" readOnly  type="text" defaultValue={user?.displayName}  placeholder="Your Name" className="input w-full input-bordered" required />
+              <input name="email" readOnly  type="email" defaultValue={user?.email} placeholder="Email Address" className="input w-full input-bordered" required />
               <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" required />
               <textarea name="location" placeholder="Your Meeting location" className="textarea w-full textarea-bordered" required ></textarea>
               <br />

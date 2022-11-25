@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
+import Swal from 'sweetalert2'
+import GoogleLogin from '../Shared/GoogleLogin/GoogleLogin';
 
 const Login = () => {
   const [error, setError] =useState('');
+  const {signIn} =useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
 
 
   const handleLogin = event => {
@@ -10,6 +18,24 @@ const Login = () => {
     const form = event.target
     const email =form.email.value;
     const password =form.password.value;
+    signIn(email, password)
+    .then(result => {
+      const user =result.user;
+      console.log(user);
+      navigate(from, {replace: true});
+
+
+      setError('')
+      Swal.fire(
+        'YourLogin is Successfully',
+        'Welcome to our shop!',
+        'success'
+      )
+    })
+    .catch(error =>{
+      console.error(error)
+      setError(error.message)
+    })
 
     
     console.log(email, password);
@@ -35,7 +61,7 @@ const Login = () => {
                 </label>
                 <input type="password" name='password' required className="input input-bordered" />
                 <label className="label">
-                  <span className="label-text font-semibold text-red-700">error</span>
+                  <span className="label-text font-semibold text-red-700">{error}</span>
                 </label>
                 <label className="label">
                   <Link to='/' className="label-text-alt link link-hover">Forgot password?</Link>
@@ -47,10 +73,10 @@ const Login = () => {
             </form>
             <div>
               <div className='text-center p-1 text-sm'>
-                <span>New to Doctors Portal?</span><span><Link to='/signup' className='text-secondary font-semibold'>Create new account</Link></span>
+                <span>Don't have an account?</span><span><Link to='/signup' className='text-secondary font-semibold'>Create new account</Link></span>
               </div>
               <div className="divider">OR</div>
-              <button className="btn btn-outline btn-accent w-full">CONTINUE WITH GOOGLE</button>
+              <GoogleLogin></GoogleLogin>
             </div>
           </div>
 

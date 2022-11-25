@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+  const {user, logOut} =useContext(AuthContext)
 
-
-
+  const handleSignOut = () => {
+    logOut()
+    .then( () => {
+      toast('Logout success')
+    })
+    .catch(error => console.error(error))
+    // console.log("clikd");
+  }
 
 
   const manuItems = <React.Fragment>
@@ -12,13 +21,12 @@ const Navbar = () => {
   <li><Link to="/about">About</Link></li>
   <li><Link to="/products">Products</Link></li>
   <li><Link to="/reviews">Advertise</Link></li>
-  <li><Link to="/login">Login</Link></li>
-  {/* {
-    user?.uid &&  <li><Link to="/dashboard">My Appoinment</Link></li>
+  {
+    user?.uid &&  <li><Link to="/dashboard">Dashboard</Link></li>
   }
  {
-  user?.uid ?  <li><button onClick={handleSignOut} className='btn btn-outline btn-primary '>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
- } */}
+  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-outline btn-primary '>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
+ }
 </React.Fragment>
   return (
     <div className='shadow-lg mb-5'>

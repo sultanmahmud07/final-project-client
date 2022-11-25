@@ -1,20 +1,32 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import '../../commonStyles/style.css'
 import CategoryCard from './CategoryCard/CategoryCard';
 
 const Products = () => {
-  const [categoryOption, setCategoryOption] = useState([]);
-  const [loader, setLoader] =useState(true);
+  // const [categoryOption, setCategoryOption] = useState([]);
+  // const [loader, setLoader] =useState(true);
 
   // if(loader){
   //   return <p>Loading....</p>
   // }
 
-  useEffect(() => {
-    fetch('http://localhost:5000/category')
-    .then(res => res.json())
-    .then(data => setCategoryOption(data))
-  }, [])
+  const {data:categoryOption = []} = useQuery({
+    queryKey: ['categoryOption'],
+    queryFn:async () => {
+      const res = await fetch('http://localhost:5000/category');
+      const data = await res.json();
+      return data
+    }
+    
+
+  })
+
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/category')
+  //   .then(res => res.json())
+  //   .then(data => setCategoryOption(data))
+  // }, [])
   // console.log(categoryOption);
 
   return (

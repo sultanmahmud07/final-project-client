@@ -1,17 +1,64 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
+import Swal from 'sweetalert2'
+import toast from 'react-hot-toast';
+import GoogleLogin from '../Shared/GoogleLogin/GoogleLogin';
+import { data } from 'autoprefixer';
 
 const SignUp = () => {
+  // const [seller, setSeller] = useState('')
   const [error, setError] = useState('')
-
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { createUser, updateUser } = useContext(AuthContext)
+  const navigate =useNavigate();
 
 
 
   const handleSigiUp = (data) => {
-    console.log(data)
+    createUser(data.email, data.password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        setError('')
+        Swal.fire(
+          'Your Signin is Successfully',
+          'Welcome to our shop!',
+          'success'
+        )
+
+       const fromInfo = {
+            userName: data.name,
+            userEmail: data.email,
+            userPass: data.password,
+            role: data.role
+        }
+        console.log(fromInfo);
+
+        //user profile update
+        const userInfo = {
+          displayName: data.name
+        }
+        updateUser(userInfo)
+          .then(() => {
+            toast("user name updated success")
+            navigate('/')
+            // saveUser(data.name, data.email)
+
+          })
+          .catch(err => console.log(err))
+      })
+      .catch(error => {
+        console.error(error)
+        setError(error.message)
+      })
   }
+
+  // const handleSeller = (data) => {
+  //   setSeller('')
+  //   console.log(seller);
+  // }
 
 
   return (
@@ -49,12 +96,24 @@ const SignUp = () => {
                 </label>
               </div>
 
-              <div className="form-control w-1/2">
+              <div>
+                <label htmlFor='role' className="label">
+                  <span className="label-text font-semibold">Register as</span>
+                </label>
+                <select {...register("role", { required: "User role is required!"})} className=" w-full select select-bordered">
+                  <option value="buyer">Buyer</option>
+                  <option value="seller">Seller</option>
+                </select>
+              </div>
+
+              {/* <div className="form-control w-32">
+                <div className="form-control">
                   <label className="label cursor-pointer">
-                    <span className="label-text">I'm Seller</span>
-                    <input readOnly type="checkbox" checked className="checkbox checkbox-primary" />
+                    <span className="label-text font-bold text-primary">Seller account</span>
+                    <input type="checkbox" value={seller} onChange={() => handleSeller(setSeller('seller'))} className="checkbox checkbox-primary" />
                   </label>
                 </div>
+              </div> */}
 
               <div className="form-control mt-6">
                 <input type="submit" className="btn btn-primary" value="SignUp" />
@@ -67,7 +126,7 @@ const SignUp = () => {
                 <span>Already have an account?</span><span><Link to='/login' className='text-secondary font-semibold'>Please login</Link></span>
               </div>
               <div className="divider">OR</div>
-              <button className="btn btn-outline btn-accent w-full">CONTINUE WITH GOOGLE</button>
+              <GoogleLogin></GoogleLogin>
             </div>
           </div>
 
