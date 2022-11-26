@@ -25,7 +25,7 @@ const Navbar = () => {
     user?.uid &&  <li><Link to="/dashboard">Dashboard</Link></li>
   }
  {
-  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-outline btn-primary '>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
+  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-primary text-white font-bold'>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
  }
 </React.Fragment>
   return (
