@@ -73,7 +73,9 @@ const handleBooking = event => {
               <input name="phone" type="text" placeholder="Phone Number" className="input w-full input-bordered" required />
               <textarea name="location" placeholder="Your Meeting location" className="textarea w-full textarea-bordered" required ></textarea>
               <br />
-              <input className='btn btn-accent w-full' type="submit" value="Submit" />
+              {
+                user?.email ? <input className='btn btn-accent w-full' type="submit" value="Submit" /> : <input className='btn btn-primary w-full' type="text" value="Please login before the booking" />
+              }
             </form>
           </div>
         </div>

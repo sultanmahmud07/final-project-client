@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import ItemCard from './ItemCard/ItemCard';
 import '../../commonStyles/style.css';
 import BookingModal from './BookingModal/BookingModal';
+import Loading from '../Shared/Loading/Loading';
 
 const CategoryItems = () => {
   const [modalData, setModalData] = useState(null);
   const items = useLoaderData()
+  const navigation = useNavigation();
   // console.log(items);
   // const [categoryItems, setCategoryItems] =useState(null);
 
+
+
+  if(navigation.state === "loading"){
+    return <Loading></Loading>
+  }
 
   return (
     <div className='common-w'>
