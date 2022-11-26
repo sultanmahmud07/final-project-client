@@ -8,6 +8,7 @@ import DashboardLayout from "../../Layouts/DashboardLayout";
 import Main from "../../Layouts/Main";
 import Blog from "../../Pages/Blog/Blog";
 import CategoryItems from "../../Pages/CategoryItems/CategoryItems";
+import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllUser from "../../Pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyBooking from "../../Pages/Dashboard/MyBooking/MyBooking";
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/addproduct',
-        element: <SellerRoute><p>lorem</p></SellerRoute>
+        element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
       },
       {
         path: '/dashboard/myproducts',
