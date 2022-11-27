@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookingModal = ({ modalData, setModalData }) => {
@@ -74,7 +75,7 @@ const handleBooking = event => {
               <textarea name="location" placeholder="Your Meeting location" className="textarea w-full textarea-bordered" required ></textarea>
               <br />
               {
-                user?.email ? <input className='btn btn-accent w-full' type="submit" value="Submit" /> : <input className='btn btn-primary w-full' type="text" value="Please login before the booking" />
+                user?.email ? <input className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white w-full' type="submit" value="Submit" /> : <Link to='/login'><input className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white w-full' type="text" value="Please login before the booking" /></Link>
               }
             </form>
           </div>

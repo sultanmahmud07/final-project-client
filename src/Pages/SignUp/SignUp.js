@@ -151,7 +151,7 @@ const SignUp = () => {
               </div> */}
 
               <div className="form-control mt-6">
-                <input type="submit" className="btn btn-primary" value="SignUp" />
+                <input type="submit" className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white" value="SignUp" />
               </div>
             </form>
 

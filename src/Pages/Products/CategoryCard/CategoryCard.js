@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PraimaryButton from '../../../components/PraimaryButtton/PraimaryButton';
 
 const CategoryCard = ({category}) => {
   const {id, name, photo_url, rating, descrip, total_view} =category
@@ -12,7 +13,7 @@ const CategoryCard = ({category}) => {
           <h2 className="card-title text-3xl font-bold capitalize">{name}</h2>
           <p>{descrip}</p>
           <div className="card-actions justify-end">
-            <Link to={`category/:${id}`}><button className="btn btn-primary ">Show all category</button></Link>
+            <Link to={`category/:${id}`}><PraimaryButton>Show all category</PraimaryButton></Link>
           </div>
         </div>
       </div>

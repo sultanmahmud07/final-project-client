@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../../commonStyles/style.css';
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer p-10 bg-base-200 text-base-content">
+    <div className="footer bg-base-200 text-base-content">
+     <div className='common-w'>
+     <footer className="footer py-10 mt-10 bg-base-200 text-base-content">
         <div>
           <span className="footer-title">Services</span>
           <Link className="link link-hover">Branding</Link>
@@ -33,11 +35,12 @@ const Footer = () => {
             </label>
             <div className="relative">
               <input type="text" placeholder="username@site.com" className="input input-bordered w-full pr-16" />
-              <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+              <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white absolute top-0 right-0 rounded-l-none">Subscribe</button>
             </div>
           </div>
         </div>
       </footer>
+     </div>
     </div>
   );
 };

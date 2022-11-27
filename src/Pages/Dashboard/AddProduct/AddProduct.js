@@ -95,7 +95,7 @@ const AddProduct = () => {
 
 
   return (
-    <div className='bg-gray-100 '>
+    <div className='bg-gray-100 pb-10'>
       <h2 className='text-2xl'>Add Doctors</h2>
       <div className='flex justify-center items-center'>
         <form onSubmit={handleSubmit(handleAddProduct)} className='max-w-xl rounded-xl shadow-2xl card-body bg-white'>
@@ -129,9 +129,9 @@ const AddProduct = () => {
           <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold">Used Time</span>
+                <span className="label-text font-semibold">Used Time (Month)</span>
               </label>
-              <input type="text" {...register("useTime", { required: true })} className="input input-bordered" />
+              <input type="number" {...register("useTime", { required: true })} className="input input-bordered" />
               {errors.email && <span className='text-red-700'>used time</span>}
             </div>
             <div className="form-control">
@@ -167,7 +167,7 @@ const AddProduct = () => {
               <label className="label">
                 <span className="label-text font-semibold">Product image</span>
               </label>
-              <input type="file" {...register("image", { required: false })} className="input input-bordered" />
+              <input type="file" {...register("image", { required: true })} className="input input-bordered" />
               {errors.image && <span className='text-red-700'>Please provited your photo</span>}
             </div>
             <div className="form-control">

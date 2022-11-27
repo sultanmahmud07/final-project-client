@@ -36,7 +36,7 @@ const Products = () => {
 
   return (
     <div className='common-w'>
-      <h1>Our Products section</h1>
+      <h1 className='text-2xl py-4 font-semibold'>Select your product category</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-20 pb-40'>
         {
           categoryOption.map(category => <CategoryCard

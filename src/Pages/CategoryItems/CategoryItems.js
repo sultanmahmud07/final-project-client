@@ -19,9 +19,9 @@ const CategoryItems = () => {
   }
 
   return (
-    <div className='common-w'>
-      <h1>Thsi is category items !!!</h1>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+    <div className='common-w pb-56 '>
+      <h1 className='text-primary text-2xl font-semibold py-8'>This category available product {items.length}</h1>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-10 sm:gap-y-10 md:gap-y-16 lg:gap-y-16'>
         {
           items.map(item => <ItemCard
             key={item._id}

@@ -75,7 +75,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input type="submit" className="btn btn-primary" value="Login" />
+                <input type="submit" className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white" value="Login" />
               </div>
             </form>
             <div>

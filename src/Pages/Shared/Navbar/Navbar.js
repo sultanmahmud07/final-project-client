@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import logo from '../../../Assat/phone-img/shop (1).png'
 
 const Navbar = () => {
   const {user, logOut} =useContext(AuthContext)
@@ -25,7 +26,7 @@ const Navbar = () => {
     user?.uid &&  <li><Link to="/dashboard">Dashboard</Link></li>
   }
  {
-  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-primary text-white font-bold'>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
+  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white text-white font-bold'>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
  }
 </React.Fragment>
   return (
@@ -43,7 +44,13 @@ const Navbar = () => {
                 }
               </ul>
             </div>
-            <Link to="/" className="btn btn-ghost normal-case text-xl text-primary text-4xl">BechaKena</Link>
+            <Link to='/'>
+            <div className='flex items-end'>
+              <img className='w-14 h-14' src={logo} alt="" />
+              <div className="text-black text-2xl font-semibold"><span className='text-primary text-5xl font-bold'>B</span>echa<span className='text-primary text-2xl font-bold'>K</span>ena</div>
+            </div>
+            </Link>
+            
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal p-0">
