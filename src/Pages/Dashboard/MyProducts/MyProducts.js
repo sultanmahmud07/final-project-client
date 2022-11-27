@@ -68,7 +68,7 @@ const MyProducts = () => {
   };
   return (
     <div>
-      <h1 className='text-2xl mb-3'>Manage Doctors</h1>
+      <h1 className='text-2xl mb-3'>Manage Product</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
 

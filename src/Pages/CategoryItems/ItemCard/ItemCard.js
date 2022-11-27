@@ -12,6 +12,7 @@ const ItemCard = ({ item, setModalData }) => {
   const handleReport = (item) => {
     const reportedProduct = {
       Brand,
+      phone_model,
       Img,
       address,
       buy,
