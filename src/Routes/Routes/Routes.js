@@ -11,6 +11,7 @@ import CategoryItems from "../../Pages/CategoryItems/CategoryItems";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import AllUser from "../../Pages/Dashboard/AllUser/AllUser";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+import ReportedProducts from "../../Pages/Dashboard/Dashboard/ReportedProducts/ReportedProducts";
 import MyBooking from "../../Pages/Dashboard/MyBooking/MyBooking";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
@@ -58,6 +59,16 @@ const router = createBrowserRouter([
         element: <CategoryItems></CategoryItems>,
         loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
       },
+      {
+        path: 'home/category/:id',
+        element: <CategoryItems></CategoryItems>,
+        loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
+      },
+      {
+        path: '/category/:id',
+        element: <CategoryItems></CategoryItems>,
+        loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
+      },
     ]
   },
   {
@@ -71,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/alluser',
         element: <AdminRoute><AllUser></AllUser></AdminRoute>
+      },
+      {
+        path: '/dashboard/reported-products',
+        element: <AdminRoute><ReportedProducts></ReportedProducts></AdminRoute>
       },
       {
         path: '/dashboard/addproduct',

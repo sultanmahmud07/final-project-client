@@ -8,7 +8,9 @@ const CategoryCard = ({category}) => {
   return (
     <div>
       <div className="card w-full bg-base-100 shadow-xl">
-        <figure><img className='w-full' src={photo_url} alt="Shoes" /></figure>
+       <Link to={`category/:${id}`}>
+       <figure><img className='w-full' src={photo_url} alt="Shoes" /></figure>
+       </Link>
         <div className="card-body">
           <h2 className="card-title text-3xl font-bold capitalize">{name}</h2>
           <p>{descrip}</p>

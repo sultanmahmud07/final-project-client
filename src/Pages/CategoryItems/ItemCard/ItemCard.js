@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { GoReport } from 'react-icons/go';
 
 const ItemCard = ({ item, setModalData }) => {
+  const [report, setReport] =useState(false)
   const { _id, Brand, Img, address, buy, condition, new_price, resell_price, post_time, use_time, phone_model, selling_address, seller_info } = item
 
 
-  console.log(item);
+ 
 
   const handleReport = (item) => {
-    toast.success(`${item.phone_model} report is success!!`)
+    const reportedProduct = {
+      Brand,
+      Img,
+      address,
+      buy,
+      condition,
+      new_price,
+      resell_price,
+      post_time,
+      sellerName: seller_info.name,
+      phone: seller_info.email,
+      selling_address,
+      use_time,
+      repo_id: _id
+      
+    }
+
+    fetch('http://localhost:5000/reports', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(reportedProduct)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log('save user', data);
+      toast.success(`${item.phone_model} report to admin is success!!`)
+      if(data.acknowledged){
+        setReport(true)
+      }
+
+      // setCreateUserEmail(email)
+      // getUserToken(email)
+      
+  
+    })
+
+    // console.log(reportedProduct);
   }
 
   return (
@@ -22,7 +61,8 @@ const ItemCard = ({ item, setModalData }) => {
             {phone_model}
             <div className="badge font-bold badge-secondary">{post_time}</div>
           </h2>
-          <span onClick={() => handleReport(item)} className='text-2xl cursor-pointer hover:text-red-500'><GoReport></GoReport></span>
+         
+          <button disabled={report} onClick={() => handleReport(item)} className='text-2xl cursor-pointer hover:text-red-500'><GoReport></GoReport></button>
          </div>
           <div className='flex justify-between'>
             <span> <span className='text-warning font-bold '> Brand:</span> {Brand}</span>

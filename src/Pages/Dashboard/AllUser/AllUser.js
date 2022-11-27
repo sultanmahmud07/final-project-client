@@ -72,6 +72,7 @@ const AllUser = () => {
               <th>No:</th>
               <th>Name</th>
               <th>Email</th>
+              <th>Seller Verification</th>
               <th>Role</th>
               <th>Admin</th>
               <th>Delete</th>
@@ -83,6 +84,11 @@ const AllUser = () => {
                 <th>{i + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
+                <td>
+                  {
+                  user?.role === 'seller' && <button className='btn btn-success btn-sm'>Verified</button>
+                  }
+                  </td>
                 <td>{user.role}</td>
                 <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className="btn btn-xs text-white btn-primary">Make Admin</button>}</td>
                 <td><button onClick={() => handleDeleteUser(user)} className="btn btn-xs btn-outline btn-error">Delete</button></td>
