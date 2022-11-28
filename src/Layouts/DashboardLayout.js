@@ -26,7 +26,7 @@ const DashboardLayout = () => {
           <ul className="menu p-4 w-80 text-base-content bg-white">
             {/* <!-- Sidebar content here --> */}
 
-            <li><Link to='/dashboard'>My Booking</Link></li>
+            <li><Link to='/dashboard'>My Booking Orders</Link></li>
 
             {
               isAdmin && <>

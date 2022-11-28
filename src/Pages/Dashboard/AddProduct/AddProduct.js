@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
+  const [disable, setDisable] = useState(false);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate =useNavigate();
   const imageHostKey = process.env.REACT_APP_imgbb_key;
@@ -16,7 +17,7 @@ const AddProduct = () => {
   const { data: specialties, isLoading } = useQuery({
     queryKey: ['specialty'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/productSpecialty');
+      const res = await fetch('https://final-project-server-zeta.vercel.app/productSpecialty');
       const data = await res.json();
       return data;
     }
@@ -31,6 +32,7 @@ const AddProduct = () => {
   }
   // Add a Product handle>>>>>>>>>>
   const handleAddProduct = data => {
+    const date = new Date().toJSON().slice(0, 10);
     const image = data.image[0];
     // console.log(data);
     const formData = new FormData();
@@ -43,6 +45,7 @@ const AddProduct = () => {
       .then(res => res.json())
       .then(imgData => {
         setLoading(true)
+        setDisable(true)
         if (imgData.success) {
           const product = {
             brand: data.brand,
@@ -56,16 +59,17 @@ const AddProduct = () => {
             productName: data.productName,
             sellPrice: data.sellPrice,
             specialty: data.specialty,
-            useTime: data.useTime
+            useTime: data.useTime,
+            postTime: date
           }
 
           setLoading(false)
           // toast.success('Product add successfully')
-          // console.log(product);
+          console.log(product);
 
 
           // save product information to the database >>>>>
-          fetch('http://localhost:5000/products', {
+          fetch('https://final-project-server-zeta.vercel.app/products', {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -154,9 +158,9 @@ const AddProduct = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text font-semibold">Post Time</span>
+                <span className="label-text font-semibold">Quantity (optional)</span>
               </label>
-              <input type="text" {...register("condition", { required: true })} className="input input-bordered" />
+              <input type="text" {...register("quantity", { required: false })} className="input input-bordered" />
               {errors.email && <span className='text-red-700'>Condition</span>}
             </div>
 
@@ -225,7 +229,7 @@ const AddProduct = () => {
 
 
           <div className="form-control mt-6">
-            <input type="submit" className="btn btn-primary" value="Add Product" />
+            <input disabled={disable} type="submit" className="btn btn-primary" value="Add Product" />
           </div>
         </form>
       </div>

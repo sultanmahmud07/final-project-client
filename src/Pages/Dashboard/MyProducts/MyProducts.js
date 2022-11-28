@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2'
+import toast from 'react-hot-toast';
 
 const MyProducts = () => {
   const [deleteingProduct, setDeleteingProduct] = useState(null)
@@ -18,7 +19,7 @@ const MyProducts = () => {
     queryKey: ['products'],
     queryFn: async () => {
       try {
-        const res = await fetch('http://localhost:5000/products', {
+        const res = await fetch('https://final-project-server-zeta.vercel.app/products', {
           headers: {
             authorization: `bearer ${localStorage.getItem('accessToken')}`
           }
@@ -35,7 +36,7 @@ const MyProducts = () => {
 
 
   const handleDeleteProduct = product => {
-    fetch(`http://localhost:5000/products/${product._id}`, {
+    fetch(`https://final-project-server-zeta.vercel.app/products/${product._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -57,7 +58,9 @@ const MyProducts = () => {
       })
   }
 
-
+const handleAdvertised = (product) => {
+  toast.success(`Your ${product.productName} advertised is successfully`)
+}
 
 
 
@@ -75,8 +78,8 @@ const MyProducts = () => {
           <thead>
             <tr>
               <th>NO</th>
-              <th>AVATAR</th>
-              <th>NAME</th>
+              <th><p className='text-end'>Product Information</p></th>
+              <th></th>
               <th>Seller Info</th>
               <th>Delete</th>
               <th>Add To Advertised</th>
@@ -102,19 +105,22 @@ const MyProducts = () => {
                         <div className="font-bold">{product.productName}</div>
                         <span className='flex'>Brand: <div className=" opacity-50">{product.brand}</div></span>
                         <span>
-                          <span>Price</span><span>{product.sellPrice}</span>
+                          <span>New price: </span><span>{product.newPrice} $</span><br></br>
+                          <span>Resell price: </span><span>{product.sellPrice} $</span>
                         </span>
                       </div>
                     </div>
                   </td>
                   <td>
-                    Zemlak, Daniel and Leannon
-                    <br />
-                    <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                    <p>Used time {product.useTime} Month only</p>
+                    <span>Post date: {product.postTime}</span>
+                    
+                    
                   </td>
                   <td>
                     {product.name}
                     <br />
+                    <span className="">{product.phone}</span><br></br>
                     <span className="">{product.email}</span><br></br>
                     <span className="badge badge-ghost badge-sm">{product.location}</span>
                   </td>
@@ -122,7 +128,7 @@ const MyProducts = () => {
                     <label onClick={() => setDeleteingProduct(product)} htmlFor="confirmation-modal" className="btn btn-secondary bg-red-600 text-white">Delete</label>
                   </td>
                   <td>
-                    <label className="btn btn-primary text-white">advertised</label>
+                    <label onClick={() => handleAdvertised(product)} className="btn btn-primary text-white">advertised</label>
                   </td>
 
                 </tr>)

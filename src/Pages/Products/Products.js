@@ -16,7 +16,7 @@ const Products = () => {
   const { data: categoryOption = [], isLoading } = useQuery({
     queryKey: ['categoryOption'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/category');
+      const res = await fetch('https://final-project-server-zeta.vercel.app/category');
       const data = await res.json();
       return data
     }
@@ -29,7 +29,7 @@ const Products = () => {
   }
 
   // useEffect(() => {
-  //   fetch('http://localhost:5000/category')
+  //   fetch('https://final-project-server-zeta.vercel.app/category')
   //   .then(res => res.json())
   //   .then(data => setCategoryOption(data))
   // }, [])

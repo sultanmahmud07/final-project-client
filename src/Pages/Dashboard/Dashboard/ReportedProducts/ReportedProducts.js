@@ -8,7 +8,7 @@ const ReportedProducts = () => {
   const { data: reportItem , isLoading, refetch } = useQuery({
     queryKey: ['reportItem'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/reports');
+      const res = await fetch('https://final-project-server-zeta.vercel.app/reports');
       const data = await res.json();
       return data;
       // console.log(data)
@@ -19,7 +19,7 @@ const ReportedProducts = () => {
 
 
   const handleDeleteProduct = product => {
-    fetch(`http://localhost:5000/reports/${product._id}`, {
+    fetch(`https://final-project-server-zeta.vercel.app/reports/${product._id}`, {
       method: 'DELETE',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

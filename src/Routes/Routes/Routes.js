@@ -6,6 +6,7 @@ import {
 import DashboardLayout from "../../Layouts/DashboardLayout";
 
 import Main from "../../Layouts/Main";
+import AdvertistMent from "../../Pages/AdvertistMent/AdvertistMent";
 import Blog from "../../Pages/Blog/Blog";
 import CategoryItems from "../../Pages/CategoryItems/CategoryItems";
 import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
@@ -55,19 +56,23 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
+        path: '/advertised',
+        element: <AdvertistMent></AdvertistMent>
+      },
+      {
         path: 'products/category/:id',
         element: <CategoryItems></CategoryItems>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
+        loader: ({params}) => fetch(`https://final-project-server-zeta.vercel.app/products/category/${params.id}`)
       },
       {
         path: 'home/category/:id',
         element: <CategoryItems></CategoryItems>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
+        loader: ({params}) => fetch(`https://final-project-server-zeta.vercel.app/products/category/${params.id}`)
       },
       {
         path: '/category/:id',
         element: <CategoryItems></CategoryItems>,
-        loader: ({params}) => fetch(`http://localhost:5000/products/category/${params.id}`)
+        loader: ({params}) => fetch(`https://final-project-server-zeta.vercel.app/products/category/${params.id}`)
       },
     ]
   },
@@ -98,7 +103,7 @@ const router = createBrowserRouter([
       {
         path: '/dashboard/payment/:id',
         element: <PrivateRoute><Payment></Payment></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+        loader: ({params}) => fetch(`https://final-project-server-zeta.vercel.app/bookings/${params.id}`)
       },
     ]
   }

@@ -28,7 +28,7 @@ const SignUp = () => {
         console.log(user);
         setError('')
         Swal.fire(
-          'Your Signin is Successfully',
+          'Your account created Successfully',
           'Welcome to our shop!',
           'success'
         )
@@ -47,7 +47,7 @@ const SignUp = () => {
         }
         updateUser(userInfo)
           .then(() => {
-            toast("user name updated success")
+            toast.success("Your user name updated successfully")
            
             saveUser(data.name, data.email, data.role)
 
@@ -65,7 +65,7 @@ const SignUp = () => {
 // Post user information in database >>>>>>>
   const  saveUser = (name, email, role) => {
     const  user = {name, email, role};
-    fetch('http://localhost:5000/users', {
+    fetch('https://final-project-server-zeta.vercel.app/users', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -84,7 +84,7 @@ const SignUp = () => {
 
 
   // const getUserToken = email => {
-  //   fetch(`http://localhost:5000/jwt?email=${email}`)
+  //   fetch(`https://final-project-server-zeta.vercel.app/jwt?email=${email}`)
   //   .then(res => res.json())
   //   .then(data => {
   //     if (data.accessToken) {

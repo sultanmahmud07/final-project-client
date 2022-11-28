@@ -39,7 +39,7 @@ const GoogleLogin = () => {
   // Post user information in database >>>>>>>
   const  saveUser = (name, email, role) => {
     const  user = {name, email, role};
-    fetch('http://localhost:5000/users', {
+    fetch('https://final-project-server-zeta.vercel.app/users', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

@@ -3,11 +3,11 @@ import toast from 'react-hot-toast';
 import { GoReport } from 'react-icons/go';
 
 const ItemCard = ({ item, setModalData }) => {
-  const [report, setReport] =useState(false)
+  const [report, setReport] = useState(false)
   const { _id, Brand, Img, address, buy, condition, new_price, resell_price, post_time, use_time, phone_model, selling_address, seller_info } = item
 
 
- 
+
 
   const handleReport = (item) => {
     const reportedProduct = {
@@ -25,29 +25,29 @@ const ItemCard = ({ item, setModalData }) => {
       selling_address,
       use_time,
       repo_id: _id
-      
+
     }
 
-    fetch('http://localhost:5000/reports', {
+    fetch('https://final-project-server-zeta.vercel.app/reports', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
       body: JSON.stringify(reportedProduct)
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log('save user', data);
-      toast.success(`${item.phone_model} report to admin is success!!`)
-      if(data.acknowledged){
-        setReport(true)
-      }
+      .then(res => res.json())
+      .then(data => {
+        console.log('save user', data);
+        toast.success(`${item.phone_model} report to admin is success!!`)
+        if (data.acknowledged) {
+          setReport(true)
+        }
 
-      // setCreateUserEmail(email)
-      // getUserToken(email)
-      
-  
-    })
+        // setCreateUserEmail(email)
+        // getUserToken(email)
+
+
+      })
 
     // console.log(reportedProduct);
   }
@@ -57,17 +57,17 @@ const ItemCard = ({ item, setModalData }) => {
       <div className="card w-full bg-base-100 shadow-2xl">
         <figure><img className='w-full md:max-h-48' src={Img} alt="Shoes" /></figure>
         <div className="card-body">
-         <div className="card-actions items-center justify-between">
-         <h2 className="card-title font-bold ">
-            {phone_model}
-            <div className="badge font-bold badge-secondary">{post_time}</div>
-          </h2>
-         
-          <button disabled={report} onClick={() => handleReport(item)} className='text-2xl cursor-pointer hover:text-red-500'><GoReport></GoReport></button>
-         </div>
+          <div className="card-actions items-center justify-between">
+            <h2 className="card-title font-bold ">
+              {phone_model}
+              <div className="badge font-bold badge-secondary">{post_time}</div>
+            </h2>
+
+            <button disabled={report} onClick={() => handleReport(item)} className='text-2xl cursor-pointer hover:text-red-500'><GoReport></GoReport></button>
+          </div>
           <div className='flex justify-between'>
             <span> <span className='text-warning font-bold '> Brand:</span> {Brand}</span>
-            <span>Use Time: {use_time}Mt</span>
+            <span>Use Time: {use_time} month</span>
           </div>
           <div className="card-actions items-center justify-start">
             <div className=""><span className='text-black font-semibold text-xl'>Resells:</span> <span className='text-primary font-bold text-xl'>{resell_price}</span>$</div>
@@ -89,7 +89,7 @@ const ItemCard = ({ item, setModalData }) => {
               <span>Phone: <span>{seller_info.email}</span></span>
             </div>
           </div>
-          
+
 
         </div>
         <div>
