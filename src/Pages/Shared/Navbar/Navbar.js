@@ -18,15 +18,15 @@ const Navbar = () => {
 
 
   const manuItems = <React.Fragment>
-  <li><Link to="/home">Home</Link></li>
-  <li><Link to="/products">Products</Link></li>
-  <li><Link to="/advertised">Advertise</Link></li>
-  <li><Link to="/blog">Blog</Link></li>
+  <li><Link className='font-semibold' to="/home">Home</Link></li>
+  <li><Link className='font-semibold' to="/products">Products</Link></li>
+  <li><Link className='font-semibold' to="/advertised">Advertise</Link></li>
+  <li><Link className='font-semibold' to="/blog">Blog</Link></li>
   {
-    user?.uid &&  <li><Link to="/dashboard">Dashboard</Link></li>
+    user?.uid &&  <li><Link className='font-semibold' to="/dashboard">Dashboard</Link></li>
   }
  {
-  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white text-white font-bold'>Sign Out</button></li> :  <li><Link to="/login">Login</Link></li>
+  user?.uid ?  <li><button onClick={handleSignOut}  className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white text-white font-bold'>Sign Out</button></li> :  <li><Link className='btn btn-primary bg-gradient-to-r from-primary to-secondary text-white text-white font-bold' to="/login">Login</Link></li>
  }
 </React.Fragment>
   return (
